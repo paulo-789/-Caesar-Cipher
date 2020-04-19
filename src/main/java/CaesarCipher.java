@@ -16,6 +16,8 @@ public class CaesarCipher {
         shiftKey = aScanner.nextInt();
         String encryptedText = EncryptText(plainText, shiftKey);
 
+        System.out.println("please wait ...........................");
+
         System.out.println("The Encrypted Text: " + encryptedText);
         System.out.println("The Decrypted Text: "+DecryptText(encryptedText,shiftKey));
     }
