@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 
  public  class  App {
@@ -16,9 +17,8 @@ import java.io.InputStreamReader;
 
          System.out.println("Please enter shift key ");
          shiftKey = aScanner.nextInt();
-         String encryptedText = EncryptText(plainText, shiftKey);
 
-         System.out.println("The Encrypted Text: " + encryptedText);
+         System.out.println("The Encrypted Text: " + EncryptedText (plainText,shiftKey));
 
 
      }

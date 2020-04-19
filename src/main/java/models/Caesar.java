@@ -1,7 +1,8 @@
 package models;
 
 public class Caesar {
-    public static String EncryptText(String message, int shiftKey) {
+
+    public static String  EncryptedText(String message, int shiftKey) {
         //c(x) =  x + shiftKey Mod(%) 26;
         final String ALPAHABETS = "abcdefghijklmnopqrstuvwxyz";
         message = message.toLowerCase();
