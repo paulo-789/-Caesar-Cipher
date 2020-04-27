@@ -1,79 +1,51 @@
-import java.util.Scanner;
-
 public class CaesarCipher {
+    private String plainText;
+    private int shiftKey;
 
-    public static void main(String[] args) {
-
-  //using scanner to collect what aperson inputs
-        Scanner aScanner = new Scanner(System.in);
-        String plainText;
-        int shiftKey;
-        System.out.println("WElcome");
-        System.out.println("Please enter message to be encrypted: ");
-        plainText = aScanner.nextLine();
-
-        System.out.println("Please enter shift key ");
-        shiftKey = aScanner.nextInt();
-        String encryptedText = EncryptText(plainText, shiftKey);
-
-        System.out.println("please wait ...........................");
-
-        System.out.println("The Encrypted Text: " + encryptedText);
-        System.out.println("The Decrypted Text: "+DecryptText(encryptedText,shiftKey));
+    public CaesarCipher(String plainText,int shiftKey) {
+        this.plainText = plainText;
+        this.shiftKey = shiftKey;
     }
-    public static String EncryptText(String message, int shiftKey) {
-        //c(x) =  x + shiftKey Mod(%) 26;
-        final String ALPAHABETS = "abcdefghijklmnopqrstuvwxyz";
-        message = message.toLowerCase();
 
+    public String getPlainText() {
+        return this.plainText;
+    }
+    public int getShiftKey() {
+        return this.shiftKey;
+    }
+
+    public String EncryptText() {
         StringBuilder cyperText = new StringBuilder();
-
-        for(int counter = 0;counter < message.length();counter++) {
-            if(!Character.isLetter(message.charAt(counter))) {
-                cyperText.append(message.charAt(counter));
+        for(char character : plainText.toCharArray()){
+            if (character !=' '){
+                int asciiPosition = character - 'a';
+                int newPosition = (asciiPosition + shiftKey) % 26;
+                char newCharacter = (char) ('a' + newPosition);
+                cyperText.append(newCharacter);
             }
             else {
-                int charPosition = ALPAHABETS.indexOf(message.charAt(counter));
-                int keyValue = (charPosition + shiftKey) % 26;
-
-                char cyperValue = ALPAHABETS.charAt(keyValue);
-
-                cyperText.append(cyperValue);
+                cyperText.append(character);
             }
         }
 
         return cyperText.toString();
     }
-    public static String DecryptText(String message, int shiftKey) {
-        //c(x) =  x - shiftKey Mod(%) 26; fomular
-        final String ALPAHABETS = "abcdefghijklmnopqrstuvwxyz";
+    public  String DecryptText() {
+        int reverseShift = 26 - (shiftKey % 26);
+        StringBuilder cyperText = new StringBuilder();
+        for(char character : plainText.toCharArray()) {
+            if (character !=' '){
+                int asciiPosition = character - 'a';
+                int newPositon =(asciiPosition + reverseShift) % 26;
+                char newCharacter = (char) ('a' + newPositon);
+                cyperText.append(newCharacter);
+            }else {
+                cyperText.append(character);
 
-        message = message.toLowerCase();
-
-        StringBuilder plainText = new StringBuilder();
-
-        for(int counter = 0;counter < message.length();counter++) {
-
-            if(!Character.isLetter(message.charAt(counter))) {
-                plainText.append(message.charAt(counter));
-            }
-
-            else {
-                int charPosition = ALPAHABETS.indexOf(message.charAt(counter));
-                int keyValue = (charPosition - shiftKey) % 26;
-
-                if (keyValue < 0) {
-
-                    keyValue = ALPAHABETS.length() + keyValue;
-                }
-
-                char plainValue = ALPAHABETS.charAt(keyValue);
-
-                plainText.append(plainValue);
             }
         }
 
-        return plainText.toString();
+        return cyperText.toString();
 
     }
 
