@@ -3,9 +3,9 @@
 public class App {
     public static void main(String[] args) {
         System.out.println("WELCOME TO THE SYSTEM OF CEASAR!");
-        System.out.println("CHOSE :ENCRYPTION,Decryption");
+        System.out.println("CHOSE:ENCRYPTION,Decryption");
         Scanner input = new Scanner(System.in);
-        String navigationchoice = input.nextLine().toLowerCase();
+        String navigationchoice = input.nextLine();
            System.out.println("CHOSE 1 ENCRYPTION,Decryption");
             if (navigationchoice.equals("ENCRYPTION")) {
                 System.out.println("Enter text to be encrypted: ");
